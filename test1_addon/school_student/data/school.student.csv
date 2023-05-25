@@ -1,0 +1,8 @@
+
+#can add data using this way using csv file or using xml file (file is not given in manifest bcz check another way to add data using xml)and the file name should be the model name
+"id",name
+"crm_iap_lead_industry_1","Consumer Discretionary"
+"crm_iap_lead_industry_2","Consumer Staples"
+
+
+

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.invoicing</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <div data-string="Invoicing" position="inside">
+                <h2>TCS</h2>
+                <div class="row mt16 o_settings_container" name="company_turnover_setting">
+                    <div class="col-12 col-lg-6 o_setting_box" id="company_turnover">
+<!--                        <div class="o_setting_left_pane"/>-->
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Financial Year Turn over</span>
+                            <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." aria-label="Values set here are company-specific." groups="base.group_multi_company" role="img"/>
+                            <div class="text-muted">
+                                Set current financial year transaction turnover
+                            </div>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="company_turnover" class="col-lg-3 o_light_label"/>
+                                    <field name="company_turnover" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt16 o_settings_container" name="transaction_amount_setting">
+                    <div class="col-12 col-lg-6 o_setting_box" id="transaction_amount">
+<!--                        <div class="o_setting_left_pane"/>-->
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Transaction Amount</span>
+                            <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." aria-label="Values set here are company-specific." groups="base.group_multi_company" role="img"/>
+                            <div class="text-muted">
+                                Set Transaction amount
+                            </div>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="transaction_amount" class="col-lg-3 o_light_label"/>
+                                    <field name="transaction_amount" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+</odoo>

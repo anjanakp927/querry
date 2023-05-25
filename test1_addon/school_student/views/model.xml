@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="school_student_list_view" model="ir.ui.view">
+        <field name="name">school.student.list.view</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="school_id"/>
+                <field name="is_virtual_class"/>
+                <field name="student_fees"/>
+                <field name="currency_id"/>
+                <field name="roll_no"/>
+            </tree>
+        </field>
+    </record>
+    <record id="school_student_form_view" model="ir.ui.view">
+        <field name="name">school.student.form.view</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="wiz_open" string="wizard open using custom method" type="object"/>
+
+                    <button name="action_whats_up_redirecting" type="object"
+                            class="oe_highlight" icon="fa-whatsapp" string="Share in WhatsApp"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <!--                            we can use the domain like the following formate total 3 parametor-->
+                            <!--                            domain=[(model_field_name,operator,parent_model_id|True/False)]-->
+                            <field name="is_virtual_class"/>
+                            <!--                            <field name="school_id"/>-->
+                            <!--                            virtual_class nu parayunnath  school_id k akathe oru field aan-->
+                            <field name="school_id"
+                                   option="({'no_create_edit':True,'no_create':True}"
+                                   domain="[('virtual_class','=','True')]"/>
+                            <field name="student_fees"/>
+                            <field name="currency_id"/>
+                            <field name="ref_id"/>
+                            <field name="phone"/>
+                            <field name="ref_id"/>
+                            <field name="roll_no"/>
+                            <field name="active"/>
+
+
+                            <!--                            <field name="user" widget="many2many_tags"/>-->
+                            <!--                            check boxes aayit may to one varum-->
+                            <field name="user" widget="many2many_checkboxes"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="school_extended_form_view" model="ir.ui.view">
+        <field name="name">school.extended.form.view</field>
+        <field name="model">school.profile</field>
+        <field name="inherit_id" ref="school_management.school_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='school_type']" position="after">
+                <!--                if we give only below all the fields will be displayed other wise give specific fields like the commented below-->
+                <tree>
+                    <field name="school_list"/>
+                    <!--                <field name="school_list">-->
+                    <!--                    <field name="name"/>-->
+                    <!--                </field>-->
+                </tree>
+                <!--                list views il um vendath maathram kodtha mathi.-->
+                <!--                <form>-->
+                <!--                    <field name="school_list"/>-->
+                <!--                </form>-->
+
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="action_student_school_profile" model="ir.actions.act_window">
+        <field name="name">School student</field>
+        <field name="res_model">school.student</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="school_student_profile_root_menu" name="Student"/>
+    <menuitem id="school_student_profile_sub_menu" parent="school_student_profile_root_menu"/>
+    <menuitem id="school_student_profile_menu" action="action_student_school_profile"
+              parent="school_student_profile_sub_menu"/>
+
+</odoo>

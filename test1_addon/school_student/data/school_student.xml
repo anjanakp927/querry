@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="abc" model="school.student">
+        <field name="name">Devu</field>
+    </record>
+    <record id="bcd" model="school.student">
+        <field name="name">Anjana</field>
+    </record>
+<!--    this function will call when the roll number which is empty,and it is defined in the python file ,the effect will be seen after upgrade-->
+    <function model="school.student" name="_change_roll_number" eval="('WL',)"/>
+</odoo>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="school_student_profile_report_trmplate">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h1>hello</h1>
+                        <h1 t-field="doc.name"/>
+                        <h1 t-field="doc.email"/>
+                        <h1 t-esc="doc.address"/>
+
+                        <!--                        another variable called "t-esc" which is used to make own variables which cannot be done using "t-field(below we make a own variable and display)"-->
+                        <t t-set="a" t-value="1234567"/>
+                        <t t-set="b" t-value="annus"/>
+                        <t t-set="c" t-value="you"/>
+                        <h1 t-esc="a"/>
+                        <h1 t-field="doc.result"/>
+                        <h1 t-field="doc.address"/>
+                        <h1 t-field="doc.user_id"/>
+                        <h1 t-field="doc.open_date"/>
+                        <!--                            CONDITIONAL STATEMENT-->
+                        <t t-if="doc.name=='fds'">
+                            <p>YES THIS IS FDS
+                                <span t-esc="doc.name"/>
+                            </p>
+                        </t>
+                        <t t-else="">
+                            <p>NO THIS IS NOT FDS</p>
+                            <!--                            the below span we use bcz we get error when we use only the field tag-->
+                        </t>
+                        <!--                        LOOPING STATEMENTS-->
+                        <t t-foreach="[1,2,3,4,5,6,7,8,7]" t-as="an">
+                            <h1 t-esc="an"/>
+                        </t>
+                        <!--                        generating a barcode the code is given below-->
+                        <img src="/report/barcode/QR/hello world" width="80" height="80" alt="Barcode"/>
+                        <!--                        image is given below-->
+                        <img src="/school_management/static/description/icon.png" alt="image is not loadibg" height="50"
+                             width="50"/>
+                        <!--                        browsing image-->
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/800px-SNice.svg.png"
+                             height="50"
+                             width="50"/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!--    <record id="student_custom_report_paperformat" model="report.paperformat">-->
+    <!--        <field name="format">A4</field>-->
+    <!--        <field name="page_height">0</field>-->
+    <!--        <field name="page_width">0</field>-->
+    <!--        <field name="orientation">Portrait</field>-->
+    <!--        <field name="margin_top">5</field>-->
+    <!--        <field name="margin_bottom">5</field>-->
+    <!--        <field name="margin_left">5</field>-->
+    <!--        <field name="margin_right">5</field>-->
+    <!--        <field name="header_line" eval="False"/>-->
+    <!--        <field name="header_spacing">0</field>-->
+    <!--        <field name="dpi">80</field>-->
+    <!--    </record>-->
+
+    <record id="action_student_report" model="ir.actions.report">
+        <field name="name">Student Card</field>
+        <field name="model">school.profile</field>
+        <field name="report_type">qweb-pdf</field>
+        <!--         below the module name and the xml_id-->
+        <field name="report_name">school_management.school_student_profile_report_trmplate</field>
+        <field name="report_file">school_management.school_student_profile_report_trmplate</field>
+        <field name="print_report_name">'Student-card'</field>
+        <field name="binding_model_id" ref="school_management.model_school_profile"/>
+        <!--        <field name="paperformat_id" ref="school_management.student_custom_report_paperformat"/>-->
+        <field name="binding_type">report</field>
+
+    </record>
+
+</odoo>

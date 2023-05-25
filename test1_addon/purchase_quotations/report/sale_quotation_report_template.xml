@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_sale_quotation_document">
+        <t t-set="o" t-value="doc.with_context({'lang':doc.partner_id.lang})"/>
+        <div class="page">
+            <div class="header">
+                <div align="left">
+                    <img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)"
+                         style="max-height: 70px;"/>
+                </div>
+            </div>
+            <div align="center">
+                <span style="font-size:19px;" t-if="o.company_id.name">
+                    <b>
+                        <t t-esc="o.company_id.name"/>
+                    </b>
+                </span>
+                <br/>
+                <span style="font-size:16px;" t-if="o.company_id.street">
+                    <t t-esc="o.company_id.street"/>
+                </span>
+                <span t-if="o.company_id.street">,</span>
+                <span style="font-size:16px;" t-if="o.company_id.street2">
+                    <t t-esc="o.company_id.street2"/>
+                </span>
+                <br/>
+                <span style="font-size:16px;" t-if="o.company_id.city">
+                    <t t-esc="o.company_id.city"/>
+                </span>
+                <span t-if="o.company_id.state_id">,</span>
+                <span style="font-size:16px;" t-if="o.company_id.state_id.name">
+                    <t t-esc="o.company_id.state_id.name"/>
+                </span>
+                <span t-if="o.company_id.country_id">,</span>
+                <span style="font-size:16px;" t-if="o.company_id.country_id.name">
+                    <t t-esc="o.company_id.country_id.name"/>
+                </span>
+                <span t-if="o.company_id.zip">,</span>
+                <span style="font-size:16px;" t-if="o.company_id.zip">
+                    PIN:
+                    <t t-esc="o.company_id.zip"/>
+                </span>
+                <br/>
+                <span>GSTIN :</span>
+                <span style="font-size:16px;" t-if="o.company_id.vat">
+                    <t t-esc="o.company_id.vat"/>
+                </span>
+            </div>
+            <hr color="black"/>
+            <div align="center" style="margin-top:30px;font-size:15px;">
+                <b>
+                    <span>QUOTATION</span>
+                </b>
+            </div>
+            <div>
+                <table style="width:100%;margin-top:30px;">
+                    <tbody>
+                        <tr>
+                            <td style="width:50%;font-size:12px;">
+                                <span>
+                                    <b>DATE :</b>
+                                </span>
+                                <span t-field="o.date_order"
+                                      t-options='{"widget": "datetime" , "format": "dd/MM/yyyy HH:mm:SS"}'/>
+                                <br/>
+                                <span>
+                                    <b>REF NO:</b>
+                                </span>
+                                <span t-field="o.name"/>
+                                <br/>
+                                <span>
+                                    <b>PRICE :</b>
+                                </span>
+                                <span t-field="o.amount_total"/>
+                                <br/>
+                                <span>
+                                    <b>YOUR REF :</b>
+                                </span>
+                                <span t-field="o.client_order_ref"/>
+                                <br/>
+                                <span>
+                                    <b>IE CODE :</b>
+                                </span>
+                                <span/>
+                            </td>
+
+                            <td style="width:50%;font-size:12px;padding-left:100px;" name="billing_address">
+                                <b>To</b>
+                                <br/>
+                                <span t-field="o.partner_id.name"/>
+                                <br/>
+                                <span t-if="o.partner_id.street">
+                                    <t t-esc="o.partner_id.street" style="font-size:12px;"/>
+                                </span>
+                                <br/>
+                                <span t-if="o.partner_id.street2">
+                                    <t t-esc="o.partner_id.street2" style="font-size:12px;"/>
+                                </span>
+                                <br/>
+                                <span t-if="o.partner_id.city">
+                                    <t t-esc="o.partner_id.city" style="font-size:12px;"/>
+                                </span>
+                                <span t-if="o.partner_id.city">,</span>
+                                <span t-if="o.partner_id.state_id.name">
+                                    <t t-esc="o.partner_id.state_id.name" style="font-size:12px;"/>
+                                </span>
+                                <span t-if="o.partner_id.country_id">,</span>
+                                <span t-if="o.partner_id.country_id.name">
+                                    <t t-esc="o.partner_id.country_id.name" style="font-size:12px;"/>
+                                </span>
+                                <span t-if="o.partner_id.zip">,</span>
+                                <span t-if="o.partner_id.zip">
+                                    <t t-esc="o.partner_id.zip" style="font-size:12px;"/>
+                                </span>
+                                <br/>
+                                <span t-if="o.partner_id.email">
+                                    <t t-esc="o.partner_id.email" style="font-size:12px;"/>
+                                </span>
+                                <span t-if="o.partner_id.email">,</span>
+                                <span t-if="o.partner_id.phone">
+                                    <t t-esc="o.partner_id.phone" style="font-size:12px;"/>
+                                </span>
+                                <span t-if="o.partner_id.phone">,</span>
+                                <span t-if="o.partner_id.mobile">
+                                    <t t-esc="o.partner_id.mobile" style="font-size:12px;"/>
+                                </span>
+                                <span t-if="o.partner_id.website">,</span>
+                                <span t-if="o.partner_id.website">
+                                    <t t-esc="o.partner_id.website" style="font-size:12px;"/>
+                                </span>
+                                <br/>
+
+                                <span>GSTIN :</span>
+                                <span t-field="o.partner_id.vat"/>
+                            </td>
+                            <!--                                <td style="width:40%;font-size:12px;">-->
+                            <!--                                </td>-->
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <hr color="black"/>
+            <div>
+                <div>
+
+                    <table style="width:100%;table-layout:fixed;border-color:
+							#fff !important;margin-top:20px;">
+                        <thead>
+                            <tr>
+                                <th style=" border: 1px !important; border-style: solid !important;border-color: #fff
+										!important;font-size:12px;width:20%;">
+                                    <b>ITEM</b>
+                                </th>
+                                <th style=" border: 1px !important; border-style: solid !important;border-color: #fff
+										!important;font-size:12px;width:20%;">
+                                    <b>DESCRIPTION</b>
+                                </th>
+                                <th style=" border: 1px !important; border-style: solid !important;border-color: #fff
+										!important;font-size:12px;width:20%;">
+                                    <b>QTY</b>
+                                </th>
+                                <th style=" border: 1px !important; border-style: solid !important;border-color: #fff
+										!important;font-size:12px;width:20%;">
+                                    <b>UNIT PRICE</b>
+                                </th>
+                                <th style=" border: 1px !important; border-style: solid !important;border-color: #fff
+										!important;font-size:12px;width:20%;">
+                                    <b>AMOUNT</b>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size:12px;">
+                            <t t-set="j" t-value="1"/>
+                            <t t-set="current_subtotal" t-value="0"/>
+                            <t t-foreach="o.quotation_line" t-as="l">
+                                <t t-set="current_subtotal" t-value="current_subtotal + l.price_total"/>
+                                <tr>
+                                    <td style="border: 1px !important;border-color: #fff !important;
+                                        ">
+                                        <span t-esc="j"/>
+                                        <t t-set="j" t-value="j+1"/>
+                                    </td>
+                                    <td style="border: 1px !important;border-color: #fff !important;
+                                        ">
+                                        <span t-field="l.name"/>
+                                    </td>
+                                    <td style="border: 1px !important;border-color: #fff !important;
+                                        ">
+                                        <span t-field="l.product_uom_qty"/>
+                                    </td>
+
+                                    <td style="border: 1px !important;border-color: #fff !important;
+                                        ">
+                                        <span t-field="l.price_unit"/>
+                                    </td>
+                                    <!--                                    <td style="border: 1px !important;border-color: #fff !important;                                                                                                                                                                            der: 1px !important;border-color: #fff !important;-->
+                                    <!--                                        padding-left:20px;padding-top:10px;">-->
+                                    <!--                                        <span t-field="l.price_subtotal"/>-->
+                                    <!--                                    </td>-->
+                                    <td style="border: 1px !important;border-color: #fff !important;
+                                        ">
+                                        <span t-field="l.price_total" t-options='{"widget": "monetary", "display_currency":
+												o.currency_id}'/>
+                                    </td>
+                                </tr>
+                            </t>
+
+                            <tr>
+                                <td style="border: 1px !important;border-color: #fff !important;padding-top:10px;
+                                        " colspan="4">
+                                    <b>Total</b>
+                                </td>
+
+                                <td style="border: 1px !important;border-color: #fff !important;
+                                        ">
+                                    <span
+                                            t-esc="current_subtotal"
+                                            t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                                    />
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+            <br/>
+            <hr color="black"/>
+            <div>
+                <span>
+                    <b>Terms and Condition</b>
+                </span>
+            </div>
+            <div>
+                <span>Delivery:
+                    <t t-esc="o.commitment_date" t-options='{"widget": "datetime" , "format": "dd/MM/yyyy HH:mm:SS"}'/>
+                </span>
+            </div>
+            <div>
+                <span>Payment Terms:
+                    <t t-esc="o.payment_term_id.name"/>
+                </span>
+            </div>
+            <div>
+                <span>Validity:
+                    <t t-esc="o.validity_date" t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/>
+                </span>
+            </div>
+            <div>
+                <span>Other Conditions:
+                    <t t-esc="o.note"/>
+                </span>
+            </div>
+
+            <div style="margin-top:10px;">
+                <span>Should you require any further assistance, please do not hesitate to contact us.
+
+                </span>
+            </div>
+
+            <!--            <div style="margin-top: 50px;">-->
+            <!--                <span>NAME : <t t-esc="o.user_id.name"/> </span>-->
+            <!--            </div>-->
+
+            <!--            <div>-->
+            <!--                <b><span>DESIGNATION </span></b>-->
+            <!--            </div>-->
+            <div style="margin-top:100px;padding-left:620px;font-size:15px;">
+                <span>For Hotelaid</span>
+                <br/>
+                <br/>
+                <br/>
+                <span>Authorised Signatory</span>
+            </div>
+        </div>
+    </template>
+    <template id="report_sale_quotation">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="sale_quotation.report_sale_quotation_document" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>

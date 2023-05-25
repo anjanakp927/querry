@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_quotation,purchase.quotation,model_purchase_quotation,purchase.group_purchase_user,1,1,1,1
+access_purchase_quotation_manager,purchase.quotation,model_purchase_quotation,purchase.group_purchase_manager,1,1,1,1
+access_purchase_quotation_invoicing_payments,purchase.quotation,model_purchase_quotation,account.group_account_invoice,1,1,0,0
+access_purchase_quotation_portal,purchase.quotation.portal,model_purchase_quotation,base.group_portal,1,0,0,0
+access_purchase_quotation_line,purchase.quotation.line user,model_purchase_quotation_line,purchase.group_purchase_user,1,1,1,1
+access_purchase_quotation_line_manager,purchase.quotation.line,model_purchase_quotation_line,purchase.group_purchase_manager,1,1,1,1
+access_purchase_quotation_line_invoicing_payments,purchase.quotation.line,model_purchase_quotation_line,account.group_account_invoice,1,1,0,0
+access_purchase_quotation_line_portal,purchase.quotation.line.portal,model_purchase_quotation_line,base.group_portal,1,0,0,0
+access_last_five_purchase,access_last_five_purchase,model_last_five_purchase,,1,1,1,1
+access_show_stock_details,access_show_stock_details,model_show_stock_details,,1,1,1,1

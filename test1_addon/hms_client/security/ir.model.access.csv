@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_coa_api_create,coa.api.create,model_coa_api_create,,1,1,1,1
+access_coa_api_search,coa.api.search,model_coa_api_search,,1,1,1,1
+access_product_api_create,product.api.create,model_product_api_create,,1,1,1,1
+access_product_api_search,product.api.search,model_product_api_search,,1,1,1,1
+access_partner_api_create,partner.api.create,model_partner_api_create,,1,1,1,1
+access_partner_api_search,partner.api.search,model_partner_api_search,,1,1,1,1

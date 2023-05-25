@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="school_list_view" model="ir.ui.view">
+        <field name="name">school.list.view</field>
+        <field name="model">school.profile</field>
+        <field name="arch" type="xml">
+            <tree export_xlsx="0">
+                <!--                in the action button there are lots of option like delete duplicate ect we can disable them using "delete=0" "duplicate=0"-->
+                <!--                if we want to delete the download button in the tree view then we can use  the following-->
+
+                <!--                <tree report_xlsx="0"> -->
+
+
+                <!--                if we wanna edit from the tree view itself it is possible by <tree editable="top"> -->
+                <!--                <tree default_order="id desc">-->
+                <field name="sequence" widget="handle"/>
+                <!--                widget="handle is used for the drag and drop of the tree view"-->
+                <field name="name" decoration-danger="1"/>
+                <field name="school_type" decoration-muted="1"/>
+                <field name="email" decoration-it="1"/>
+                <field name="phone" decoration-info="1"/>
+                <field name="virtual_class"/>
+                <field name="parent_name" decoration-primary="1"/>
+                <field name="address" decoration-warning="1"/>
+                <field name="auto_rank"/>
+                <button name="button_click" string="click" type="object" class="fa fa-hand-o-right"/>
+            </tree>
+        </field>
+    </record>
+    <record id="school_form_view" model="ir.ui.view">
+        <field name="name">school.form.view</field>
+        <field name="model">school.profile</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_whats_up_redirecting" type="object"
+                            class="oe_highlight" icon="fa-whatsapp" string="Share in WhatsApp"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="parent_name"/>
+                            <field name="name"/>
+                            <field name="phone"/>
+                            <field name="email"/>
+                            <field name="address"/>
+                            <field name="open_date"/>
+                            <field name="user_id"/>
+                            <field name="school_type"/>
+                            <field name="school_description"/>
+                            <field name="auto_rank"/>
+                        </group>
+                        <group>
+                            <field name="virtual_class"/>
+                            <field name="establish_date"/>
+                            <field name="school_image" widget="image"/>
+                            <field name="document" filename="document_name"/>
+                            <!-- no need to display this                            <field name="document_name" invisible="1"/>-->
+                        </group>
+
+                        <field name="order_line" force_save="1">
+                            <tree editable="bottom">
+                                <field name="product_id"/>
+                                <field name="name"/>
+                            </tree>
+                        </field>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--    <record id="school_kanban_view" model="ir.ui.view">-->
+    <!--        <field name="name">school.kanban.view</field>-->
+    <!--        <field name="model">school.profile</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <kanban>-->
+    <!--                <field name="parent_name"/>-->
+    <!--                <template>-->
+    <!--                    <t t-name="kanban-box">-->
+    <!--                        <div class="oe_kanban_card">-->
+    <!--                            <span t-esc="record.parent_name.raw_value"/>-->
+    <!--                        </div>-->
+    <!--                    </t>-->
+    <!--                </template>-->
+    <!--            </kanban>-->
+    <!--        </field>-->
+    <!--    </record>-->
+    <!--    GOOGLE-->
+    <record id="url_action_for_google" model="ir.actions.act_url">
+        <field name="name">Google Redirect Page</field>
+        <field name="url">https://youtube.com</field>
+    </record>
+
+
+    <record id="school_calendar_view" model="ir.ui.view">
+        <field name="name">school.calendar.view</field>
+        <field name="model">school.profile</field>
+        <field name="arch" type="xml">
+            <calendar date_start="create_date">
+                <field name="name"/>
+            </calendar>
+        </field>
+    </record>
+    <record id="school_graph_view" model="ir.ui.view">
+        <field name="name">school.graph.view</field>
+        <field name="model">school.profile</field>
+        <field name="arch" type="xml">
+            <graph disable_linking="1">
+                <field name="name"/>
+            </graph>
+        </field>
+    </record>
+    <record id="school_pivot_view" model="ir.ui.view">
+        <field name="name">school.pivot.view</field>
+        <field name="model">school.profile</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="name" type="col"/>
+            </pivot>
+        </field>
+    </record>
+    <!--    <record id="student_cohort_view" model="ir.ui.view">-->
+    <!--        <field name="name">school.cohort.view</field>-->
+    <!--        <field name="model">school.profile</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <cohort date_start="start_date" date_stop="end_date" string="Student">-->
+    <!--            </cohort>-->
+    <!--        </field>-->
+    <!--    </record>-->
+    <record id="school_search_view" model="ir.ui.view">
+        <field name="name">school.search.view</field>
+        <field name="model">school.profile</field>
+        <field name="arch" type="xml">
+            <search>
+
+                <!--                side panel*****************************************************************-->
+                <!--                our custon search we can define here all the 3 records-->
+                <field name="name" string="Student Name" filter_domain="[('name','like',self)]"/>
+                <!--                many2one field is define below-->
+                <field name="user_id" string="users"
+                       filter_domain="['|',('name','like',self),('user_id','like',self)]"/>
+                <!--                ****************************************************************************-->
+                <!--                filter#############################################################################-->
+                <filter string="SchoolName"
+                        name="school_type"
+                        domain="[('school_type','!=',False)]"/>
+                <!--                original filter will removed after refresh-->
+                <group string="Group By">
+                    <filter name="school_type"
+                            string="School"
+                            context="{'group_by':'school_type'}"/>
+                </group>
+                <searchpanel>
+                    <field name="school_type" icon="fa fa-filter"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+    <record id="action_school_profile" model="ir.actions.act_window">
+        <field name="name">School Profile</field>
+        <field name="res_model">school.profile</field>
+        <field name="view_mode">tree,form,calendar,kanban,graph,pivot</field>
+    </record>
+    <menuitem id="school_profile_root_menu" name="School"/>
+    <menuitem id="school_profile_sub_menu" parent="school_profile_root_menu"/>
+    <menuitem id="school_profile_menu" action="action_school_profile" parent="school_profile_root_menu"/>
+    <menuitem id="url_action" name="Youtub" action="url_action_for_google" parent="school_profile_menu"/>
+
+</odoo>

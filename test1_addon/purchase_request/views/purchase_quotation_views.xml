@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_quotation_form_create_po_inherit" model="ir.ui.view">
+        <field name="name">purchase.quotation.form.pr.inherit</field>
+        <field name="model">purchase.quotation</field>
+        <field name="inherit_id" ref="purchase_quotations.purchase_quotation_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@id='create_po']" position="attributes">
+                <attribute name="attrs">{'invisible':True}</attribute>
+            </xpath>
+            <xpath expr="//button[@id='draft_confirm']" position="attributes">
+                <attribute name="attrs">{'invisible':True}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

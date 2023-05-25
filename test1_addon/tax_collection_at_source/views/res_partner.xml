@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!--  inherit partner form. -->
+    <record id="view_partner_form_tis_tcs_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.tis.tcs</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='sales_purchases']" position="after">
+                <page name="partner_tcs" string="TCS">
+<!--                    <div>-->
+<!--                        <label for="tcs_threshold_check"-->
+<!--                               string="Apply TCS / Withholding if the turnover crosses the threshold"/>-->
+
+<!--                    </div>-->
+                    <group>
+<!--                        <field name="tcs_threshold_check"/>-->
+                        <field name="pan_no"/>
+                        <field name="turnover_check" widget="radio" options="{'horizontal': true}"/>
+                        <field name="is_specified_person" widget="radio" options="{'horizontal': true}"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

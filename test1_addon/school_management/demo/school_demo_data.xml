@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="demo_school1" model="school.profile">
+        <field name="name">My School</field>
+        <field name="phone">787456789</field>
+    </record>
+    <record id="demo_school2" model="school.profile">
+        <field name="name">My School2</field>
+        <field name="phone">7874567899</field>
+    </record>
+    <record id="demo_school3" model="school.profile">
+        <field name="name">My School3</field>
+        <field name="phone">78756789</field>
+    </record>
+
+</odoo>

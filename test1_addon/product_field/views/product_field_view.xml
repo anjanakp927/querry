@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+    <record id="product_template_view" model="ir.ui.view">
+        <field name="name">product.template.views</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+
+            <!--             <xpath expr="//label[@for='barcode']" position="after">-->
+            <!--                <field name="purchase_authority"/>-->
+            <!--            </xpath>-->
+            <xpath expr="//div[@name='volume']" position="after">
+                <label for="area"
+                       attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}"/>
+                <div class="o_row" name="area"
+                     attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}">
+
+                    <field name="area"/>
+                    <span>
+                        <field name="area_uom_name"/>
+                    </span>
+                </div>
+                <label for="ampere_hour"
+                       attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}"/>
+                <div class="o_row" name="ampere_hour"
+                     attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}">
+                    <field name="ampere_hour"/>
+                </div>
+                <label for="volt_ampere"
+                       attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}"/>
+                <div class="o_row" name="volt_ampere"
+                     attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}">
+
+
+                    <field name="volt_ampere"/>
+                </div>
+
+                <label for="volt_direct_current"
+                       attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}"/>
+                <div class="o_row" name="volt_direct_current"
+                     attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}">
+
+                    <field name="volt_direct_current"/>
+
+                </div>
+
+
+            </xpath>
+
+            <xpath expr="//page[@name='inventory']" position="after">
+                <page name="other_info" string="Other Info">
+                    <group>
+                        <group name="reference_date" string="Reference Data">
+                            <field name="item_code"/>
+                            <field name="item_type"/>
+                        </group>
+                    </group>
+
+                </page>
+            </xpath>
+
+            <xpath expr="//group[@name='group_lots_and_weight']" position="after">
+                <group name="field_handling" string="Handling">
+                    <group name="product_handling">
+                        <field name="return_issued"/>
+                        <field name="recondition"/>
+                    </group>
+                </group>
+            </xpath>
+
+            <xpath expr="//group[@name='bill']" position="after">
+                <group name="maintenance" string="Maintenance">
+                    <group>
+                        <field name="maintenance_approval"/>
+                    </group>
+                </group>
+
+                <group name="receipt" string="Receipt">
+                    <group name="receipt_sub">
+                        <field name="weighment"/>
+                    </group>
+                </group>
+            </xpath>
+
+            <xpath expr="//div[@name='standard_price_uom']" position="after">
+                <label for="buy_back_price" groups="base.group_user"
+                       attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"/>
+                <div name="buy_back_price" groups="base.group_user"
+                     attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"
+                     class="o_row">
+                    <field name="buy_back_price" widget='monetary'
+                           options="{'currency_field': 'cost_currency_id', 'field_digits': True}"/>
+                </div>
+                <field name="purchase_authority"/>
+                <field name="part_number"/>
+            </xpath>
+
+
+            <!--                <div>-->
+            <!--                    <field name="purchase_authority" string='Purchase Authority'/>-->
+            <!--                </div>-->
+            <!--                <div>-->
+            <!--                    <field name="part_number" string='Patr Number'/>-->
+            <!--                </div>-->
+            <!--            <xpath expr="//div[@name='standard_price']" position="after">-->
+            <!--                <label for="purchase_authority"/>-->
+            <!--                <div name="purchase_authority">-->
+            <!--                    <field name="purchase_authority"/>-->
+            <!--                </div>-->
+            <!--            </xpath>-->
+            <!--            </xpath>-->
+
+        </field>
+    </record>
+
+    <record id="product_added_fields_search_view" model="ir.ui.view">
+        <field name="name">product.fields.search.view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="area" string="Area"/>
+                <filter
+                        string="Area"
+                        name="groupby_area"
+                        domain="[]"
+                        context="{'group_by' : 'area'}"
+                />
+                <separator/>
+                <field name="ampere_hour"/>
+
+                <filter
+                        string="Ampere Hour"
+                        name="groupby_ampere_hour"
+                        domain="[]"
+                        context="{'group_by' : 'ampere_hour'}"
+                />
+                <separator/>
+
+                <field name="volt_ampere"/>
+                <filter
+                        string="Volt Ampere"
+                        name="groupby_ampere_hour"
+                        domain="[]"
+                        context="{'group_by' : 'volt_ampere'}"
+                />
+                <separator/>
+                <field name="volt_direct_current"/>
+                <filter
+                        string="Volt Direct Current"
+                        name="groupby_volt_direct_current"
+                        domain="[]"
+                        context="{'group_by' : 'volt_direct_current'}"
+                />
+                <separator/>
+
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
