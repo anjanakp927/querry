@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="driver_roster_sequence" model="ir.sequence">
+        <field name="name">Driver Roster</field>
+        <field name="code">driver.roster</field>
+        <field name="prefix">DR</field>
+        <field name="padding">5</field>
+        <field name="number_next" eval="1"/>
+        <field name="number_increment" eval="1"/>
+    </record>
+</odoo>

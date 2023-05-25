@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="email_template_mail" model="mail.template">
+        <field name="name">PTA</field>
+        <field name="model_id" ref="building_anj.model_building_anj_building_anj"/>
+        <field name="partner_to">${object.create_uid.partner_id.id}</field>
+        <field name="email_to">${object.email}</field>
+        <field name="body_html" type="xml">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <th>${object.name}</th>
+                    <th>${object.price}</th>
+
+                </tr>
+            </table>
+        </field>
+    </record>
+</odoo>

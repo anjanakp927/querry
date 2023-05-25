@@ -1,0 +1,74 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="driver_roster_tree_view">
+            <field name="name">Driver Roster Tree</field>
+            <field name="model">driver.roster</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="driver"/>
+                    <field name="sale_order_ids"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="driver_roster_form_view">
+            <field name="name">Driver Roster Form</field>
+            <field name="model">driver.roster</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <header>
+                        <button name="button_confirm" string="Confirm" type="object" states="draft"
+                                class="oe_highlight"/>
+                        <button name="cancel" string="cancel" type="object" states="confirm" class="oe_highlight"/>
+                        <button name="button_draft" string="Reset to Draft" type="object" states="cancel"
+                                class="oe_highlight"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <h1>
+                            <field name="code" readonly="1"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="driver"/>
+                                <field name="date"/>
+                            </group>
+                            <field name="sale_order_ids"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+
+
+    <record model="ir.ui.view" id="driver_roster_search_view">
+        <field name="name">Driver Roster Search</field>
+        <field name="model">driver.roster</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="driver"/>
+                <field name="date"/>
+                <field name="code"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_driver_roster" model="ir.actions.act_window">
+        <field name="name">Driver Roster</field>
+        <field name="res_model">driver.roster</field>
+        <field name="view_mode">tree,form,search</field>
+    </record>
+
+    <menuitem name="Driver Roster" id="driver_roster.menu_root"/>
+
+    <menuitem name="Driver Roster" id="driver_roster.menu_1" parent="driver_roster.menu_root"/>
+
+
+    <menuitem name="Driver Roster" id="driver_roster" parent="driver_roster.menu_1"
+              action="action_driver_roster"/>
+
+
+</odoo>

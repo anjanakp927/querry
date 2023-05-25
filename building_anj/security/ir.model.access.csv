@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_building_anj_building_anj,building_anj.building_anj,model_building_anj_building_anj,base.group_user,1,1,1,1
+access_price_price,price.price,model_price_price,,1,1,1,1
+access_dbs_query,dbs.query,model_dbs_query,,1,1,1,1
+

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_driver_roster_driver_roster,driver_roster.driver_roster,model_driver_roster,,1,1,1,1

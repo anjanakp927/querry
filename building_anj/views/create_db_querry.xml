@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+
+
+        <record model="ir.actions.act_window" id="create_db_querry">
+            <field name="name">price price</field>
+            <field name="res_model">dbs.query</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem name="Menu 3" id="price_price_db_query_menu_1" parent="building_anj.menu_root"/>
+
+
+        <menuitem name="List" id="price_price_db_query_1_list" parent="price_price_db_query_menu_1"
+                  action="create_db_querry"/>
+    </data>
+</odoo>

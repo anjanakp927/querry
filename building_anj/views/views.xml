@@ -1,0 +1,78 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="building_anj.list">
+            <field name="name">building_anj list</field>
+            <field name="model">building_anj.building_anj</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="special_command" string="Start Recruitment" type="object" class="oe_highlight"/>
+                        <button name="special_command2" string="2,0" type="object" class="oe_highlight"/>
+                        <button name="special500" string="5,0,0" type="object" class="oe_highlight"/>
+                        <button name="special10" string="1,0,0" type="object" class="oe_highlight"/>
+                        <button name="action_send_mail" string="send email" type="object" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="email"/>
+                            <field name="value"/>
+                            <field name="value2"/>
+                            <field name="price">
+                                <tree editable="bottom">
+                                    <field name="id"/>
+                                    <field name="price"/>
+                                    <field name="quantity"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="building_anj_search" model="ir.ui.view">
+            <field name="name">building_anj.building_anj</field>
+            <field name="model">building_anj.building_anj</field>
+            <field name="arch" type="xml">
+                <search string="Anjana">
+                    <field name="name" string="name"/>
+
+                    <separator/>
+                    <filter name="name" string="name" domain="[('id', 'in', (2,6,5))]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_manager" string="Manager" domain="[]" context="{'group_by':'name'}"/>
+
+                    </group>
+<!--                    <searchpanel>-->
+<!--                        <field name="company_id" groups="base.group_multi_company" icon="fa-building" enable_counters="1"/>-->
+<!--                        <field name="department_id" icon="fa-users" enable_counters="1"/>-->
+<!--                    </searchpanel>-->
+                </search>
+             </field>
+        </record>
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="building_anj.action_window">
+            <field name="name">building_anj window</field>
+            <field name="res_model">building_anj.building_anj</field>
+            <field name="view_mode">tree,form,search</field>
+        </record>
+
+
+        <!-- Top menu item -->
+
+        <menuitem name="building_anj" id="building_anj.menu_root"/>
+
+        <!-- menu categories -->
+        <menuitem name="Menu 1" id="building_anj.menu_1" parent="building_anj.menu_root"/>
+
+        <!-- actions -->
+
+        <menuitem name="List" id="building_anj.menu_1_list" parent="building_anj.menu_1"
+                  action="building_anj.action_window"/>
+    </data>
+</odoo>
